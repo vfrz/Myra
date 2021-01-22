@@ -20,9 +20,11 @@ namespace Myra.Samples.AllWidgets
 			_graphics = new GraphicsDeviceManager(this)
 			{
 				PreferredBackBufferWidth = 1200,
-				PreferredBackBufferHeight = 800
+				PreferredBackBufferHeight = 800,
+				SynchronizeWithVerticalRetrace = false
 			};
 			Window.AllowUserResizing = true;
+			IsFixedTimeStep = false;
 			IsMouseVisible = true;
 		}
 
@@ -30,7 +32,7 @@ namespace Myra.Samples.AllWidgets
 		{
 			base.LoadContent();
 
-			MyraEnvironment.Platform = new MGPlatform(GraphicsDevice);
+			MyraEnvironment.Platform = new MGPlatform(GraphicsDevice, Content);
 
 			_allWidgets = new AllWidgets();
 
@@ -81,13 +83,13 @@ namespace Myra.Samples.AllWidgets
 		{
 			base.Update(gameTime);
 
-			_allWidgets._horizontalProgressBar.Value += 0.5f;
+			_allWidgets._horizontalProgressBar.Value += 0.02f * (float) gameTime.ElapsedGameTime.TotalMilliseconds;
 			if (_allWidgets._horizontalProgressBar.Value > _allWidgets._horizontalProgressBar.Maximum)
 			{
 				_allWidgets._horizontalProgressBar.Value = _allWidgets._horizontalProgressBar.Minimum;
 			}
 
-			_allWidgets._verticalProgressBar.Value += 0.5f;
+			_allWidgets._verticalProgressBar.Value += 0.02f * (float) gameTime.ElapsedGameTime.TotalMilliseconds;
 			if (_allWidgets._verticalProgressBar.Value > _allWidgets._verticalProgressBar.Maximum)
 			{
 				_allWidgets._verticalProgressBar.Value = _allWidgets._verticalProgressBar.Minimum;

@@ -553,6 +553,10 @@ namespace Myra.Graphics2D.UI
 		[DefaultValue(DragDirection.Both)]
 		public DragDirection DragDirection { get; set; } = DragDirection.Both;
 
+		[Category("Behavior")]
+		[DefaultValue(null)]
+		public string OnMouseEnterSound { get; set; } = null;
+		
 		[XmlIgnore]
 		[Browsable(false)]
 		public Widget DragHandle { get; set; }
@@ -1422,6 +1426,8 @@ namespace Myra.Graphics2D.UI
 		{
 			IsMouseInside = true;
 			MouseEntered.Invoke(this);
+			if (!string.IsNullOrWhiteSpace(OnMouseEnterSound))
+				MyraEnvironment.Platform.PlaySound(OnMouseEnterSound);
 		}
 
 		public virtual void OnMouseMoved()

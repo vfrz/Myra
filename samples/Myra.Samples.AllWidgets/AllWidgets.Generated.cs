@@ -113,6 +113,7 @@ namespace Myra.Samples.AllWidgets
 			_buttonSaveFile.Padding = new Thickness(8, 0);
 			_buttonSaveFile.GridColumn = 1;
 			_buttonSaveFile.Id = "_buttonSaveFile";
+			_buttonSaveFile.OnMouseEnterSound = "sounds/test.ogg";
 
 			_textSaveFile = new TextBox();
 			_textSaveFile.GridColumn = 2;

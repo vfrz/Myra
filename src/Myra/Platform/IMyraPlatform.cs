@@ -21,5 +21,7 @@ namespace Myra.Platform
 		void SetKeysDown(bool[] keys);
 
 		TouchCollection GetTouchState();
+
+		void PlaySound(string path);
 	}
 }

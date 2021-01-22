@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D.UI;
@@ -11,6 +13,8 @@ namespace Myra.Samples.AllWidgets
 	{
 		private readonly GraphicsDevice _device;
 
+		private readonly ContentManager _contentManager;
+
 		public Point ViewSize
 		{
 			get
@@ -19,7 +23,7 @@ namespace Myra.Samples.AllWidgets
 			}
 		}
 
-		public MGPlatform(GraphicsDevice device)
+		public MGPlatform(GraphicsDevice device, ContentManager contentManager)
 		{
 			if (device == null)
 			{
@@ -27,6 +31,7 @@ namespace Myra.Samples.AllWidgets
 			}
 
 			_device = device;
+			_contentManager = contentManager;
 		}
 
 		public object CreateTexture(int width, int height)
@@ -76,6 +81,14 @@ namespace Myra.Samples.AllWidgets
 		{
 			// Do not bother with accurately returning touch state for now
 			return TouchCollection.Empty;
+		}
+
+		public void PlaySound(string path)
+		{
+			Console.WriteLine($"Play sound: {path}");
+			return;
+			var sound = _contentManager.Load<SoundEffect>(path);
+			sound.Play();
 		}
 	}
 }
